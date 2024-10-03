@@ -1,15 +1,12 @@
-
 document.getElementById('userForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
   // Get form values
   const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;   
-
+  const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const dob = document.getElementById('dob').value;
-  const acceptTerms = document.getElementById('acceptTerms').checked;   
-
+  const acceptTerms = document.getElementById('acceptTerms').checked;
 
   // Validate email format
   if (!validateEmail(email)) {
@@ -56,13 +53,11 @@ function isValidAge(dob) {
   const birthDate = new Date(dob);
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();   
-
+  const monthDiff = today.getMonth() - birthDate.getMonth();
   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
     age--;
   }
-  return   
- age >= 18 && age <= 55;
+  return age >= 18 && age <= 55;
 }
 
 // Save data to localStorage
@@ -88,8 +83,7 @@ function appendEntryToTable(entry) {
     <td>${entry.email}</td>
     <td>${entry.password}</td>
     <td>${entry.dob}</td>
-    <td>${entry.acceptTerms}</td>   
-
+    <td>${entry.acceptTerms}</td>
   `;
   tableBody.appendChild(row);
 }
