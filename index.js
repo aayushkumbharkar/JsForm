@@ -38,7 +38,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
   // Clear the form
   this.reset();
 
-  // Update table headers
+  // Ensure table headers are present
   updateTableHeaders();
 });
 
@@ -90,16 +90,13 @@ function appendEntryToTable(entry) {
 
 // Update table headers
 function updateTableHeaders() {
-  const entries = JSON.parse(localStorage.getItem('formEntries')) || [];
-  if (entries.length > 0) {
-    const tableHead = document.getElementById('tableHead');
-    const headers = tableHead.getElementsByTagName('th');
-    headers[0].textContent = 'Name';
-    headers[1].textContent = 'Email';
-    headers[2].textContent = 'Password';
-    headers[3].textContent = 'Date of Birth';
-    headers[4].textContent = 'Accepted terms?';
-  }
+  const tableHead = document.getElementById('tableHead');
+  const headers = tableHead.getElementsByTagName('th');
+  headers[0].textContent = 'Name';
+  headers[1].textContent = 'Email';
+  headers[2].textContent = 'Password';
+  headers[3].textContent = 'Date of Birth';
+  headers[4].textContent = 'Accepted terms?';
 }
 
 // Load entries from localStorage on page load
