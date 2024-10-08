@@ -32,14 +32,11 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
   // Save entry to localStorage
   saveToLocalStorage(newEntry);
 
-  // Add entry to table
+  // Add entry to table immediately
   appendEntryToTable(newEntry);
 
   // Clear the form
   this.reset();
-
-  // Ensure table headers are present
-  updateTableHeaders();
 });
 
 // Validate email format
@@ -70,8 +67,9 @@ function saveToLocalStorage(entry) {
 // Load data from localStorage and display in table
 function loadFromLocalStorage() {
   const entries = JSON.parse(localStorage.getItem('formEntries')) || [];
+  const tableBody = document.getElementById('tableBody');
+  tableBody.innerHTML = '';
   entries.forEach(entry => appendEntryToTable(entry));
-  updateTableHeaders(); // Update table headers on page load
 }
 
 // Add a new entry to the table
@@ -88,16 +86,7 @@ function appendEntryToTable(entry) {
   tableBody.appendChild(row);
 }
 
-// Update table headers
-function updateTableHeaders() {
-  const tableHead = document.getElementById('tableHead');
-  const headers = tableHead.getElementsByTagName('th');
-  headers[0].textContent = 'Name';
-  headers[1].textContent = 'Email';
-  headers[2].textContent = 'Password';
-  headers[3].textContent = 'Date of Birth';
-  headers[4].textContent = 'Accepted terms?';
-}
-
 // Load entries from localStorage on page load
-window.onload = loadFromLocalStorage;
+window.onload = function() {
+  loadFromLocalStorage();
+};
